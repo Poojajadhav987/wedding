@@ -1,19 +1,24 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const seal = document.getElementById('sealButton');
-    const gatefold = document.getElementById('gatefold');
+const sealBtn = document.getElementById('sealButton');
+const gatefold = document.getElementById('gatefold');
+const mainContent = document.getElementById('main-content');
 
-    seal.addEventListener('click', function() {
-        // Hide seal
-        gatefold.classList.add('opening-sequence');
+sealBtn.addEventListener('click', () => {
+    // 1. Shrink Seal
+    gatefold.classList.add('opening-sequence');
+    
+    // 2. Open Doors
+    setTimeout(() => {
+        gatefold.classList.add('opened');
         
-        // Open doors
+        // 3. Reveal Internal Content
         setTimeout(() => {
-            gatefold.classList.add('opened');
+            mainContent.classList.remove('hidden');
             
-            // Start emoji walk after doors open
+            // 4. Trigger Photo Slide & Character Walk
             setTimeout(() => {
-                document.querySelector('.animation-container').classList.add('walk');
-            }, 1000);
-        }, 300);
-    });
+                document.querySelector('.couple-reveal').classList.add('animate-together');
+                document.querySelector('.animation-box').classList.add('walk-in');
+            }, 500);
+        }, 800);
+    }, 300);
 });
