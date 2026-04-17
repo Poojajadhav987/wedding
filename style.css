@@ -1,62 +1,111 @@
+:root {
+    --gold: #D4AF37;
+    --deep-red: #8B0000;
+    --cream: #FFFDD0;
+}
+
 body {
     margin: 0;
-    background-color: #fdf5f2;
+    text-align: center;
+    background-color: var(--cream);
     font-family: 'Playfair Display', serif;
-    overflow-x: hidden;
+    color: #333;
 }
 
-/* Patrika Opening Animation */
-#patrika-container {
+/* ENVELOPE STYLING */
+#envelope {
     height: 100vh;
+    background: var(--deep-red);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #c0392b; /* Traditional Red */
-    color: gold;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    transition: 1.5s all ease;
+}
+
+.envelope-wrapper {
+    border: 3px solid var(--gold);
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.heart-button {
+    width: 100px;
+    height: 100px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    transition: transform 1s ease-in-out;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    font-weight: bold;
+    color: var(--deep-red);
+    animation: pulse 2s infinite;
 }
 
-.closed { transform: translateY(0); }
-.opened { transform: translateY(-100%); }
-
-/* Main Content Styling */
-#main-content {
-    padding: 20px;
-    text-align: center;
-}
-
+/* MAIN CONTENT */
 .hidden { display: none; }
 
-.couple-reveal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px 0;
+.date-header {
+    font-size: 2rem;
+    color: var(--deep-red);
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+    padding: 10px 30px;
 }
 
-.side-img {
-    width: 150px;
-    height: 150px;
+.profile-img {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    border: 5px solid gold;
-    transition: all 2s ease;
+    border: 8px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    margin-top: 40px;
 }
 
-/* Animation: They slide together */
-.animate-together .left { transform: translateX(30px); }
-.animate-together .right { transform: translateX(-30px); }
-
-.names {
+.bride-name, .groom-name, .names-together {
     font-family: 'Great Vibes', cursive;
-    font-size: 4rem;
-    color: #c0392b;
+    font-size: 3.5rem;
+    color: var(--deep-red);
+    margin: 10px 0;
 }
 
-.full-img {
-    width: 80%;
-    max-width: 600px;
-    border-radius: 15px;
-    margin-top: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+.weds-sign {
+    font-size: 3rem;
+    color: var(--gold);
+}
+
+/* WEDDING CHARACTER ANIMATION */
+.animation-box {
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+}
+
+.character {
+    font-size: 80px;
+    position: absolute;
+    transition: 3s all ease;
+}
+
+.groom-char { left: -100px; }
+.bride-char { right: -100px; }
+
+.walk-in .groom-char { left: calc(50% - 70px); }
+.walk-in .bride-char { right: calc(50% - 70px); }
+
+.together-img {
+    width: 90%;
+    max-width: 500px;
+    border: 10px solid white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
