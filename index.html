@@ -3,56 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
+    <title>Shubhangi & Durgesh Wedding</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="envelope">
-        <div class="envelope-wrapper">
-            <div class="heart-button" id="openBtn">
-                <span>Open</span>
+    <div id="card-container">
+        <div id="gatefold" class="closed">
+            <div class="panel panel-left"></div>
+            <div class="panel panel-right"></div>
+
+            <div class="gold-seal" id="sealButton">
+                <span>SD</span>
             </div>
-            <div class="envelope-text">A Special Invitation</div>
         </div>
-    </div>
 
-    <div id="main-content" class="hidden">
-        <header>
-            <h2 class="animate__animated animate__fadeIn">Save The Date</h2>
-            <div class="date-header">13 . 05 . 2026</div>
-        </header>
+        <div id="inner-page">
+            <header>
+                <h2 class="ganesha">|| Shree Ganeshay Namah ||</h2>
+                <h1 class="main-title">Wedding Invitation</h1>
+            </header>
 
-        <section class="profile">
-            <img src="images/bride.png" class="profile-img animate__animated" id="brideImg">
-            <h1 class="bride-name">The Beautiful Bride</h1>
-            <p>  Shubhangi </p>
-        </section>
+            <section class="couple-section">
+                <div class="profile">
+                    <img src="images/bride.png" alt="Shubhangi">
+                    <h1 class="name">Shubhangi</h1>
+                </div>
+                
+                <div class="weds-text">weds</div>
 
-        <div class="weds-sign">&</div>
+                <div class="profile">
+                    <img src="images/groom.png" alt="Durgesh">
+                    <h1 class="name">Durgesh</h1>
+                </div>
+            </section>
 
-        <section class="profile">
-            <img src="images/groom.png" class="profile-img animate__animated" id="groomImg">
-            <h1 class="groom-name">The Handsome Groom</h1>
-            <p>  Durgesh</p>
-        </section>
+            <section class="event-details">
+                <p class="invite-msg">Together with our families, we invite you to celebrate our wedding.</p>
+                
+                <div class="date-ribbon">
+                    13 MAY 2026
+                </div>
 
-        <section class="ceremony">
-            <div class="animation-box">
-                <div class="character groom-char">🤵</div>
-                <div class="character bride-char">👰</div>
-            </div>
-            <h2>Are Getting Married!</h2>
-            <p class="location">Pandmavati Hall, Vaijapur, 7:00 PM</p>
-        </section>
-
-        <section class="together-section">
-            <img src="images/together.png" class="together-img">
-            <h1 class="names-together">Groom & Bride</h1>
-            <button class="rsvp-btn">Will You Attend?</button>
-        </section>
+                <div class="animation-container">
+                    <span class="char groom-icon">🤵</span>
+                    <span class="char bride-icon">👰</span>
+                </div>
+                
+                <div class="info-grid">
+                    <p><strong>Venue:</strong> The Royal Palace, Mumbai</p>
+                    <p><strong>Time:</strong> 7:00 PM Onwards</p>
+                </div>
+            </section>
+            
+            <section class="photo-footer">
+                <img src="images/together.png" alt="Shubhangi and Durgesh" class="couple-full">
+            </section>
+        </div>
     </div>
 
     <script src="script.js"></script>
