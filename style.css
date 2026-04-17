@@ -1,105 +1,234 @@
+/* 1. SETUP & COLORS */
 :root {
-    /* Define the core colors based on your image */
-    --deep-red: #A52A2A; /* Main red background */
-    --cream-gold: #F2E3C0; /* The base color of the panels */
-    --foil-gold: #D4AF37; /* The accent gold of the pattern/seal */
+    --gold: #D4AF37;
+    --deep-red: #8B0000;
+    --cream-gold: #FDF5E6;
+    --dark-maroon: #5a0000;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+    /* Royal gradient background */
+    background: radial-gradient(circle, var(--deep-red), var(--dark-maroon));
+    font-family: 'Playfair Display', serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: var(--deep-red);
-    font-family: 'Cinzel', serif;
-    overflow: hidden;
+    width: 100vw;
+    overflow: hidden; /* Prevent scrolling during opening */
 }
 
+/* 2. MAIN CONTAINER */
 #card-container {
     width: 90vw;
-    max-width: 550px;
-    height: 85vh;
+    max-width: 500px;
+    height: 80vh;
+    max-height: 700px;
     position: relative;
-    perspective: 2000px; /* 3D effect depth */
+    perspective: 2000px; /* Essential for 3D door effect */
 }
 
+/* 3. GATEFOLD (The Opening Doors) */
 #gatefold {
+    position: absolute;
     width: 100%;
     height: 100%;
-    position: absolute;
+    z-index: 20;
     transform-style: preserve-3d;
-    z-index: 10;
-    transition: 0.3s ease;
+    transition: visibility 0.5s;
 }
 
-/* THE UPDATED PANEL DESIGN */
 .panel {
     width: 50%;
     height: 100%;
-    background-color: var(--cream-gold); /* The traditional cream base */
+    background-color: var(--cream-gold);
     position: absolute;
     top: 0;
+    /* This handles your pattern image */
+    background-image: url('images/pattern.png'); 
+    background-size: 200px; /* Adjust this to make pattern smaller or larger */
+    background-repeat: repeat;
     
-    /* ADD THE LASER CUT PATTERN HERE */
-    background-image: url('images/pattern.png'); /* YOUR PATTERN IMAGE */
-    background-size: repeat; /* Fill the whole panel */
-    opacity: 0.9; /* Subtle transparency */
-    
-    /* Adds a gold foil border and texture */
-    border: 5px solid transparent;
-    border-image: linear-gradient(to bottom, #D4AF37, #B89626) 1;
-    box-shadow: inset 0 0 80px rgba(0,0,0,0.1); /* Subtle texture shadow */
-
-    transition: transform 1.5s ease-in-out;
+    border: 3px solid var(--gold);
+    transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+    backface-visibility: hidden;
 }
 
 .panel-left {
     left: 0;
-    transform-origin: left center;
+    transform-origin: left;
+    border-right: 1px solid rgba(0,0,0,0.1);
 }
 
 .panel-right {
     right: 0;
-    transform-origin: right center;
+    transform-origin: right;
+    border-left: 1px solid rgba(0,0,0,0.1);
 }
 
-/* THE OPENING MOTION */
-#gatefold.opened .panel-left {
+/* OPENING MOTION */
+.opened .panel-left {
     transform: rotateY(-130deg);
 }
 
-#gatefold.opened .panel-right {
+.opened .panel-right {
     transform: rotateY(130deg);
 }
 
-/* THE GOLD SEAL */
+/* 4. THE GOLD SEAL (OPEN BUTTON) */
 .gold-seal {
-    width: 90px;
-    height: 90px;
-    background: radial-gradient(circle, #E6C67C, #C5A059);
+    width: 85px;
+    height: 85px;
+    background: radial-gradient(circle, #f0d58e, var(--gold));
     border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 20;
+    z-index: 30;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid #A67E3F;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    border: 4px solid #8e6d1a;
+    transition: all 0.5s ease;
 }
 
 .gold-seal span {
-    font-size: 1.8rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: #4A1A1A;
+    text-transform: uppercase;
 }
 
-#gatefold.opening-sequence .gold-seal {
+.opening-sequence .gold-seal {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0);
+}
+
+/* 5. INTERNAL PAGE CONTENT */
+#main-content {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    text-align: center;
+    overflow-y: auto; /* Allows scrolling on mobile */
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hidden {
+    display: none;
+}
+
+.animate-text {
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.couple-reveal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+.side-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    object-fit: cover;
+    transition: 2s ease;
+}
+
+.animate-together .left { transform: translateX(10px); }
+.animate-together .right { transform: translateX(-10px); }
+
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: var(--deep-red);
+    margin: 10px 0;
+}
+
+.weds {
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.details h3 {
+    margin-top: 20px;
+    color: var(--dark-maroon);
+}
+
+.wedding-date {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--deep-red);
+    margin: 10px 0;
+}
+
+/* CHARACTER ANIMATION */
+.animation-box {
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+    margin: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.character {
+    font-size: 45px;
+    position: absolute;
+    bottom: 5px;
+    transition: 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.groom-char { left: -60px; }
+.bride-char { right: -60px; }
+
+.walk-in .groom-char { left: calc(50% - 55px); }
+.walk-in .bride-char { right: calc(50% - 55px); }
+
+.full-img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 20px;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* 6. MOBILE RESPONSIVENESS */
+@media (max-width: 600px) {
+    #card-container {
+        height: 85vh;
+        width: 95vw;
+    }
+
+    .names {
+        font-size: 2.2rem;
+    }
+
+    .side-img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .gold-seal {
+        width: 75px;
+        height: 75px;
+    }
 }
