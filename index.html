@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding Invitation</title>
+    <title>Wedding Invitation</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
 
-    <div id="patrika-container" class="closed">
-        <div class="envelope-top"></div>
-        <div class="card-front">
-            <h1>Our Wedding</h1>
-            <p>Click to Open</p>
+    <div id="envelope">
+        <div class="envelope-wrapper">
+            <div class="heart-button" id="openBtn">
+                <span>Open</span>
+            </div>
+            <div class="envelope-text">A Special Invitation</div>
         </div>
     </div>
 
     <div id="main-content" class="hidden">
-        <section class="hero">
-            <h2 class="animate-text">You are Invited!</h2>
-            <div class="couple-reveal">
-                <img src="images/groom.png" alt="Groom" class="side-img left">
-                <span class="weds">&</span>
-                <img src="images/bride.png" alt="Bride" class="side-img right">
-            </div>
-            <h1 class="names">Groom & Bride</h1>
+        <header>
+            <h2 class="animate__animated animate__fadeIn">Save The Date</h2>
+            <div class="date-header">13 . 05 . 2026</div>
+        </header>
+
+        <section class="profile">
+            <img src="images/bride.jpg" class="profile-img animate__animated" id="brideImg">
+            <h1 class="bride-name">The Beautiful Bride</h1>
+            <p>D/o Mr. & Mrs. Surname</p>
         </section>
 
-        <section class="details">
-            <h3>Save the Date</h3>
-            <p>June 20, 2026</p>
-            <p>At 7:00 PM</p>
-            <div class="final-photo">
-                <img src="images/together.png" alt="Together" class="full-img">
+        <div class="weds-sign">&</div>
+
+        <section class="profile">
+            <img src="images/groom.jpg" class="profile-img animate__animated" id="groomImg">
+            <h1 class="groom-name">The Handsome Groom</h1>
+            <p>S/o Mr. & Mrs. Surname</p>
+        </section>
+
+        <section class="ceremony">
+            <div class="animation-box">
+                <div class="character groom-char">🤵</div>
+                <div class="character bride-char">👰</div>
             </div>
+            <h2>Are Getting Married!</h2>
+            <p class="location">At Royal Orchid Venue, 7:00 PM</p>
+        </section>
+
+        <section class="together-section">
+            <img src="images/together.jpg" class="together-img">
+            <h1 class="names-together">Groom & Bride</h1>
+            <button class="rsvp-btn">Will You Attend?</button>
         </section>
     </div>
 
