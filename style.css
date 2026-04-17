@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    background-color: #fdf5f2;
+    font-family: 'Playfair Display', serif;
+    overflow-x: hidden;
+}
+
+/* Patrika Opening Animation */
+#patrika-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #c0392b; /* Traditional Red */
+    color: gold;
+    cursor: pointer;
+    transition: transform 1s ease-in-out;
+}
+
+.closed { transform: translateY(0); }
+.opened { transform: translateY(-100%); }
+
+/* Main Content Styling */
+#main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.hidden { display: none; }
+
+.couple-reveal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.side-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid gold;
+    transition: all 2s ease;
+}
+
+/* Animation: They slide together */
+.animate-together .left { transform: translateX(30px); }
+.animate-together .right { transform: translateX(-30px); }
+
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    color: #c0392b;
+}
+
+.full-img {
+    width: 80%;
+    max-width: 600px;
+    border-radius: 15px;
+    margin-top: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
