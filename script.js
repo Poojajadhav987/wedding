@@ -1,15 +1,32 @@
-document.getElementById('patrika-container').addEventListener('click', function() {
-    // Hide the envelope and show the content
-    this.classList.add('opened');
-    
+const openBtn = document.getElementById('openBtn');
+const envelope = document.getElementById('envelope');
+const mainContent = document.getElementById('main-content');
+
+openBtn.addEventListener('click', () => {
+    // 1. Shrink and Fade the Envelope
+    envelope.style.opacity = '0';
     setTimeout(() => {
-        this.style.display = 'none';
-        const content = document.getElementById('main-content');
-        content.classList.remove('hidden');
-        
-        // Trigger the "Getting Married" slide animation
-        setTimeout(() => {
-            document.querySelector('.couple-reveal').classList.add('animate-together');
-        }, 500);
-    }, 1000);
+        envelope.style.display = 'none';
+        mainContent.classList.remove('hidden');
+        triggerAnimations();
+    }, 1500);
 });
+
+function triggerAnimations() {
+    // 2. Animate Bride & Groom Images
+    setTimeout(() => {
+        document.getElementById('brideImg').classList.add('animate__fadeInLeft');
+    }, 500);
+
+    setTimeout(() => {
+        document.getElementById('groomImg').classList.add('animate__fadeInRight');
+    }, 1500);
+
+    // 3. Make the Characters "Walk" together when user scrolls
+    window.onscroll = function() {
+        let pos = window.scrollY;
+        if (pos > 400) {
+            document.querySelector('.animation-box').classList.add('walk-in');
+        }
+    };
+}
