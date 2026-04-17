@@ -1,141 +1,105 @@
 :root {
-    --gold: #D4AF37;
-    --deep-red: #8B0000;
-    --cream: #FDF5E6;
+    /* Define the core colors based on your image */
+    --deep-red: #A52A2A; /* Main red background */
+    --cream-gold: #F2E3C0; /* The base color of the panels */
+    --foil-gold: #D4AF37; /* The accent gold of the pattern/seal */
 }
 
 body {
     margin: 0;
-    background-color: var(--deep-red);
-    font-family: 'Playfair Display', serif;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden; /* Prevents scrolling before opening */
+    background-color: var(--deep-red);
+    font-family: 'Cinzel', serif;
+    overflow: hidden;
 }
 
 #card-container {
     width: 90vw;
-    max-width: 500px;
-    height: 90vh;
+    max-width: 550px;
+    height: 85vh;
     position: relative;
-    perspective: 1500px;
+    perspective: 2000px; /* 3D effect depth */
 }
 
-/* GATEFOLD STYLING */
 #gatefold {
-    position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 10;
+    position: absolute;
     transform-style: preserve-3d;
+    z-index: 10;
+    transition: 0.3s ease;
 }
 
+/* THE UPDATED PANEL DESIGN */
 .panel {
     width: 50%;
     height: 100%;
-    background-color: var(--cream);
+    background-color: var(--cream-gold); /* The traditional cream base */
     position: absolute;
-    border: 1px solid #ddd;
+    top: 0;
+    
+    /* ADD THE LASER CUT PATTERN HERE */
+    background-image: url('images/pattern.png'); /* YOUR PATTERN IMAGE */
+    background-size: repeat; /* Fill the whole panel */
+    opacity: 0.9; /* Subtle transparency */
+    
+    /* Adds a gold foil border and texture */
+    border: 5px solid transparent;
+    border-image: linear-gradient(to bottom, #D4AF37, #B89626) 1;
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.1); /* Subtle texture shadow */
+
     transition: transform 1.5s ease-in-out;
 }
 
-.panel-left { left: 0; transform-origin: left; }
-.panel-right { right: 0; transform-origin: right; }
+.panel-left {
+    left: 0;
+    transform-origin: left center;
+}
 
-.opened .panel-left { transform: rotateY(-120deg); }
-.opened .panel-right { transform: rotateY(120deg); }
+.panel-right {
+    right: 0;
+    transform-origin: right center;
+}
 
+/* THE OPENING MOTION */
+#gatefold.opened .panel-left {
+    transform: rotateY(-130deg);
+}
+
+#gatefold.opened .panel-right {
+    transform: rotateY(130deg);
+}
+
+/* THE GOLD SEAL */
 .gold-seal {
-    width: 80px;
-    height: 80px;
-    background: var(--gold);
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, #E6C67C, #C5A059);
     border-radius: 50%;
     position: absolute;
-    top: 50%; left: 50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: 20;
     cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 5px solid #A67E3F;
+}
+
+.gold-seal span {
+    font-size: 1.8rem;
     font-weight: bold;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #4A1A1A;
 }
 
-.opening-sequence .gold-seal { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-
-/* INTERNAL CONTENT STYLING */
-#main-content {
-    background-color: white;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    text-align: center;
-    overflow-y: auto; /* Allows scrolling on mobile once open */
-    border-radius: 5px;
-}
-
-.hidden { display: none; }
-
-.couple-reveal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-}
-
-.side-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid var(--gold);
-    transition: 2s ease;
-}
-
-/* Slide animation for photos */
-.animate-together .left { transform: translateX(15px); }
-.animate-together .right { transform: translateX(-15px); }
-
-.names {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.5rem;
-    color: var(--deep-red);
-    margin: 10px 0;
-}
-
-.weds { font-size: 2rem; color: var(--gold); margin: 0 10px; }
-
-.animation-box {
-    height: 100px;
-    position: relative;
-    overflow: hidden;
-    margin: 20px 0;
-}
-
-.character { font-size: 50px; position: absolute; transition: 3s ease; }
-.groom-char { left: -50px; }
-.bride-char { right: -50px; }
-
-.walk-in .groom-char { left: calc(50% - 45px); }
-.walk-in .bride-char { right: calc(50% - 45px); }
-
-.full-img {
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.wedding-date {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--deep-red);
-}
-
-/* Mobile specific fix */
-@media (max-width: 600px) {
-    .names { font-size: 2rem; }
-    .side-img { width: 80px; height: 80px; }
+#gatefold.opening-sequence .gold-seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
 }
