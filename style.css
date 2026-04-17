@@ -1,111 +1,147 @@
 :root {
-    --gold: #D4AF37;
-    --deep-red: #8B0000;
-    --cream: #FFFDD0;
+    --deep-red: #9B1B1B;
+    --cream: #FDF5E6;
+    --gold: #C5A059;
 }
+
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
-    text-align: center;
-    background-color: var(--cream);
-    font-family: 'Playfair Display', serif;
-    color: #333;
-}
-
-/* ENVELOPE STYLING */
-#envelope {
+    background-color: var(--deep-red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    background: var(--deep-red);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    transition: 1.5s all ease;
-}
-
-.envelope-wrapper {
-    border: 3px solid var(--gold);
-    padding: 50px;
-    border-radius: 10px;
-}
-
-.heart-button {
-    width: 100px;
-    height: 100px;
-    background: var(--gold);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    font-weight: bold;
-    color: var(--deep-red);
-    animation: pulse 2s infinite;
-}
-
-/* MAIN CONTENT */
-.hidden { display: none; }
-
-.date-header {
-    font-size: 2rem;
-    color: var(--deep-red);
-    border-bottom: 2px solid var(--gold);
-    display: inline-block;
-    padding: 10px 30px;
-}
-
-.profile-img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 8px solid white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    margin-top: 40px;
-}
-
-.bride-name, .groom-name, .names-together {
-    font-family: 'Great Vibes', cursive;
-    font-size: 3.5rem;
-    color: var(--deep-red);
-    margin: 10px 0;
-}
-
-.weds-sign {
-    font-size: 3rem;
-    color: var(--gold);
-}
-
-/* WEDDING CHARACTER ANIMATION */
-.animation-box {
-    height: 150px;
-    position: relative;
+    font-family: 'Cinzel', serif;
     overflow: hidden;
 }
 
-.character {
-    font-size: 80px;
-    position: absolute;
-    transition: 3s all ease;
-}
-
-.groom-char { left: -100px; }
-.bride-char { right: -100px; }
-
-.walk-in .groom-char { left: calc(50% - 70px); }
-.walk-in .bride-char { right: calc(50% - 70px); }
-
-.together-img {
-    width: 90%;
+#card-container {
+    width: 95vw;
     max-width: 500px;
-    border: 10px solid white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    height: 85vh;
+    position: relative;
+    perspective: 1500px;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+/* PANELS */
+#gatefold {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+}
+
+.panel {
+    width: 50%;
+    height: 100%;
+    background-color: var(--cream);
+    position: absolute;
+    border: 2px solid #EEE0C5;
+    transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.05);
+}
+
+.panel-left { left: 0; transform-origin: left; }
+.panel-right { right: 0; transform-origin: right; }
+
+/* OPENING ANIMATION */
+#gatefold.opened .panel-left { transform: rotateY(-130deg); }
+#gatefold.opened .panel-right { transform: rotateY(130deg); }
+
+/* GOLD SEAL */
+.gold-seal {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #E6C67C, #C5A059);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #4A1A1A;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    transition: 0.5s;
+}
+
+#gatefold.opening-sequence .gold-seal {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+/* INNER PAGE CONTENT */
+#inner-page {
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    padding: 20px;
+    text-align: center;
+    overflow-y: auto;
+    border-radius: 5px;
+}
+
+.ganesha { font-family: 'Great Vibes', cursive; color: var(--gold); }
+.main-title { color: var(--deep-red); font-size: 2.2rem; }
+
+.couple-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    object-fit: cover;
+}
+
+.name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    margin: 5px 0;
+    color: var(--deep-red);
+}
+
+.weds-text { font-size: 1.5rem; color: var(--gold); font-style: italic; }
+
+.date-ribbon {
+    background: var(--deep-red);
+    color: white;
+    padding: 8px 25px;
+    display: inline-block;
+    margin: 20px 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* EMOJI ANIMATION */
+.animation-container {
+    height: 60px;
+    position: relative;
+    margin: 10px 0;
+}
+
+.char { font-size: 40px; position: absolute; transition: 4s ease-in-out; }
+.groom-icon { left: 0; }
+.bride-icon { right: 0; }
+
+.walk .groom-icon { left: 35%; }
+.walk .bride-icon { right: 35%; }
+
+.couple-full {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
 }
